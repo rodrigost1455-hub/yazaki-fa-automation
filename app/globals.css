@@ -1,0 +1,317 @@
+/* ============================================================
+   YAZAKI FAILURE ANALYSIS — GLOBAL STYLES
+   ============================================================ */
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html,
+body {
+  background-color: #525659;
+  font-family: Arial, Helvetica, sans-serif;
+  min-height: 100vh;
+}
+
+body {
+  padding: 28px 16px 110px;
+}
+
+/* ---------- Header ---------- */
+.app-header {
+  max-width: 850px;
+  margin: 0 auto 18px;
+  color: #eee;
+  font-size: 13px;
+  text-align: center;
+}
+
+.app-header strong {
+  color: #fff;
+  letter-spacing: 0.5px;
+}
+
+.app-sub {
+  opacity: 0.7;
+  font-size: 11px;
+  margin-top: 4px;
+}
+
+/* ---------- Page container ---------- */
+.page {
+  position: relative;
+  width: 850px;
+  max-width: 100%;
+  margin: 0 auto 24px;
+  background: white;
+  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.35);
+  border-radius: 2px;
+  overflow: hidden;
+  /* Letter aspect ratio 8.5:11 */
+  aspect-ratio: 8.5 / 11;
+}
+
+.page-bg {
+  /* next/image with `fill` produces an absolutely-positioned <img> already */
+  user-select: none;
+  pointer-events: none;
+  object-fit: contain;
+}
+
+.page-label {
+  position: absolute;
+  top: 6px;
+  right: 10px;
+  font-size: 10px;
+  color: rgba(0, 0, 0, 0.4);
+  z-index: 50;
+  font-weight: 600;
+  pointer-events: none;
+  background: rgba(255, 255, 255, 0.7);
+  padding: 1px 6px;
+  border-radius: 8px;
+}
+
+/* ---------- Editable text fields ---------- */
+.ghost-field {
+  position: absolute;
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: 10.5px;
+  color: #000;
+  background: white;
+  border: 1px dashed transparent;
+  padding: 1px 4px;
+  line-height: 1.25;
+  z-index: 10;
+  outline: none;
+  transition: background 0.15s ease, border-color 0.15s ease,
+    box-shadow 0.15s ease;
+  resize: none;
+  overflow: hidden;
+}
+
+.ghost-field.center {
+  text-align: center;
+}
+.ghost-field.bold {
+  font-weight: bold;
+}
+.ghost-field.multiline {
+  font-size: 10.5px;
+  text-align: justify;
+  line-height: 1.32;
+}
+
+.ghost-field:hover {
+  background-color: #fffbcc;
+  border-color: rgba(0, 0, 0, 0.25);
+}
+
+.ghost-field:focus {
+  background-color: #fff8b3;
+  border-color: #c00000;
+  box-shadow: 0 0 0 2px rgba(192, 0, 0, 0.18);
+  z-index: 20;
+}
+
+/* ---------- Photo dropzones ---------- */
+.photo-zone {
+  position: absolute;
+  z-index: 15;
+  border: 2px dashed rgba(192, 0, 0, 0.55);
+  background: rgba(255, 255, 255, 0.25);
+  cursor: pointer;
+  overflow: hidden;
+  transition: all 0.15s ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.photo-zone.mask {
+  background: white;
+}
+
+.photo-zone:hover {
+  border-color: #c00000;
+  background: rgba(255, 230, 230, 0.85);
+  box-shadow: 0 0 0 2px rgba(192, 0, 0, 0.2);
+}
+
+.photo-zone.has-image {
+  background: white;
+  border: 1px solid #000;
+}
+
+.photo-zone.has-image:hover {
+  border-color: #c00000;
+}
+
+.photo-zone img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+.photo-placeholder {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 4px;
+  color: #c00000;
+  font-size: 9px;
+  font-weight: 600;
+  text-align: center;
+  line-height: 1.1;
+  padding: 4px;
+  pointer-events: none;
+}
+
+.photo-placeholder svg {
+  width: 18px;
+  height: 18px;
+  opacity: 0.7;
+}
+
+.photo-zone.has-image .photo-placeholder {
+  display: none;
+}
+
+.photo-remove {
+  position: absolute;
+  top: 3px;
+  right: 3px;
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  background: rgba(192, 0, 0, 0.92);
+  color: white;
+  border: none;
+  cursor: pointer;
+  font-size: 14px;
+  font-weight: bold;
+  line-height: 1;
+  display: none;
+  align-items: center;
+  justify-content: center;
+  z-index: 5;
+  padding: 0;
+}
+
+.photo-zone.has-image:hover .photo-remove {
+  display: flex;
+}
+
+/* ---------- Floating submit bar ---------- */
+.submit-bar {
+  position: fixed;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  padding: 22px 16px 20px;
+  background: linear-gradient(
+    180deg,
+    rgba(35, 37, 39, 0) 0%,
+    rgba(35, 37, 39, 0.96) 55%,
+    rgba(35, 37, 39, 1) 100%
+  );
+  display: flex;
+  justify-content: center;
+  gap: 12px;
+  z-index: 100;
+  pointer-events: none;
+}
+
+.submit-bar button {
+  pointer-events: auto;
+  padding: 12px 28px;
+  border: none;
+  border-radius: 6px;
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.15s ease;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.4);
+  font-family: inherit;
+  letter-spacing: 0.3px;
+}
+
+.btn-submit {
+  background: #c00000;
+  color: white;
+}
+
+.btn-submit:hover {
+  background: #a00000;
+  transform: translateY(-1px);
+}
+
+.btn-reset {
+  background: #555;
+  color: white;
+}
+
+.btn-reset:hover {
+  background: #444;
+}
+
+/* ---------- Toast ---------- */
+.toast {
+  position: fixed;
+  top: 20px;
+  left: 50%;
+  transform: translateX(-50%) translateY(-12px);
+  color: white;
+  padding: 12px 22px;
+  border-radius: 6px;
+  font-size: 13px;
+  font-weight: 500;
+  box-shadow: 0 6px 22px rgba(0, 0, 0, 0.5);
+  z-index: 200;
+  opacity: 0;
+  transition: opacity 0.22s ease, transform 0.22s ease;
+  pointer-events: none;
+}
+
+.toast.show {
+  opacity: 1;
+  transform: translateX(-50%) translateY(0);
+}
+
+/* ---------- Print ---------- */
+@media print {
+  body {
+    background: white;
+    padding: 0;
+  }
+  .page {
+    box-shadow: none;
+    margin: 0;
+    page-break-after: always;
+  }
+  .submit-bar,
+  .page-label,
+  .photo-remove,
+  .app-header {
+    display: none !important;
+  }
+  .ghost-field {
+    background: transparent !important;
+    border-color: transparent !important;
+    box-shadow: none !important;
+  }
+  .photo-zone {
+    border-color: transparent !important;
+    background: transparent !important;
+  }
+  .photo-zone:not(.has-image) {
+    background: white !important;
+  }
+  .photo-placeholder {
+    display: none !important;
+  }
+}
