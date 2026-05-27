@@ -33,7 +33,8 @@ yazaki-fa/
 ├── lib/
 │   └── types.ts           # Interfaces compartidas
 ├── public/
-│   └── pages/             # JPEGs de cada página del PDF (13)
+│   ├── pages/             # JPEGs de cada página del PDF (13)
+│   └── defaults/          # 41 crops de las fotos originales del W2605-042
 ├── next.config.mjs
 ├── package.json
 └── tsconfig.json
@@ -86,14 +87,21 @@ vercel --prod
 
 ## Cómo usar la app
 
+- **Inicio**: al cargar la página, un modal pregunta si quieres comenzar con
+  las **fotos originales** del reporte W2605-042 o con todos los slots vacíos.
 - **Editar texto**: click en cualquier celda o párrafo. Se ilumina amarillo al
   hover, rojo al focus. Se guarda al state automáticamente.
-- **Subir foto**: click en cualquier caja con borde rojo dasheado. Abre el file
-  picker (en móvil ofrece cámara directamente via `capture="environment"`).
-- **Eliminar foto**: hover sobre la foto subida → aparece botón `×` rojo.
+- **Agregar foto**: click en cualquier caja con borde rojo dasheado. Aparece un
+  mini-menú con tres opciones:
+  - **Use original photo** — usa la foto del reporte W2605-042 original
+  - **Upload new** — abre file picker / cámara (móvil)
+  - **Cancel**
+- **Eliminar foto**: hover sobre la foto puesta → aparece botón `×` rojo.
 - **Submit / Generate PDF**: loguea el payload completo a la consola del
-  navegador (texto + base64 de imágenes).
-- **Reset**: restaura todos los valores del reporte original W2605-042.
+  navegador. Distingue en el log entre fotos originales (referenciadas por
+  path) y fotos subidas (base64 inline).
+- **Reset**: restaura todos los valores del reporte original W2605-042 y
+  reabre el modal inicial.
 
 ## Próximos pasos sugeridos
 

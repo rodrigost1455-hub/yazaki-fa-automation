@@ -12,6 +12,7 @@ interface Props {
   imageValues: Record<string, string | null>;
   onTextChange: (id: string, value: string) => void;
   onImageUpload: (id: string, base64: string) => void;
+  onUseDefault: (id: string, defaultSrc: string) => void;
   onImageRemove: (id: string) => void;
 }
 
@@ -21,6 +22,7 @@ export function Page({
   imageValues,
   onTextChange,
   onImageUpload,
+  onUseDefault,
   onImageRemove,
 }: Props) {
   const slots = photoSlotsFor(pageNumber);
@@ -54,7 +56,9 @@ export function Page({
           key={slot.id}
           slot={slot}
           value={imageValues[slot.id] ?? null}
+          defaultSrc={`/defaults/${slot.id}.jpg`}
           onUpload={onImageUpload}
+          onUseDefault={onUseDefault}
           onRemove={onImageRemove}
         />
       ))}
